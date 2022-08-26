@@ -1,0 +1,17 @@
+{:paths ["src"]
+ :deps  {hiccup/hiccup            {:mvn/version "2.0.0-alpha2"}
+         org.babashka/http-server {:mvn/version "0.1.11"}
+         org.babashka/cli         {:mvn/version "0.2.23"}
+         metosin/malli            {:mvn/version "0.8.9"}}
+ :tasks {:requires ([babashka.cli :as cli])
+         :init     (def cli-opts (cli/parse-opts *command-line-args* {:coerce {:port :int}}))
+         serve     {:doc      "Serve static assets"
+                    :requires ([babashka.http-server :as server])
+                    :task     (server/exec (merge {:port 1337
+                                                   :dir  "./dist/"}
+                                                  cli-opts))}
+         prn       {:task (clojure "-X clojure.core/prn" cli-opts)}
+         -dev      {:depends [serve prn]}
+         dev       {:task (run '-dev {:parallel true})}
+
+         repl (clojure.main/repl)}}

@@ -1,0 +1,6 @@
+* kpav dot dev
+The source of https://kpav.dev.
+
+It is created by a static site generator written in Clojure.
+
+This is a work in progress.
