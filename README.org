@@ -1,6 +1,17 @@
 * kpav dot dev
 The source of https://kpav.dev.
 
-It is created by a static site generator written in Clojure.
+This is created by a static site generator written in Clojure.
 
 This is a work in progress.
+** Usage
+Start the server:
+#+BEGIN_SRC
+  bb dev
+#+END_SRC
+
+Run the tests
+#+BEGIN_SRC
+  bb test
+#+END_SRC
+

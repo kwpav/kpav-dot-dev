@@ -1,4 +1,4 @@
-{:paths ["src"]
+{:paths ["."]
  :deps  {hiccup/hiccup            {:mvn/version "2.0.0-alpha2"}
          org.babashka/http-server {:mvn/version "0.1.11"}
          org.babashka/cli         {:mvn/version "0.2.23"}
@@ -13,5 +13,6 @@
          prn       {:task (clojure "-X clojure.core/prn" cli-opts)}
          -dev      {:depends [serve prn]}
          dev       {:task (run '-dev {:parallel true})}
-
-         repl (clojure.main/repl)}}
+         repl      (clojure.main/repl)
+         test {:doc  "Run tests"
+               :task (shell "bb test_runner.clj")}}}
