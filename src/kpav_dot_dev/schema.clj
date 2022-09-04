@@ -1,5 +1,6 @@
 (ns kpav-dot-dev.schema
-  (:require [malli.core :as m]))
+  (:require [malli.core :as m]
+            [malli.error :as me]))
 
 ;; from malli README
 ;; https://github.com/metosin/malli#parsing-values
@@ -19,7 +20,8 @@
 (def Page
   [:map
    {:closed true}
-   [:name [:re #"^[a-z0-9]+(?:_+[a-z0-9]+)*$"]] ;; non-empty strings with only lowercase, numbers, or underscores
+   [:location [:re #"^[a-z0-9]*(?:-+[/a-z0-9]+)*$"]]
+   [:name [:re #"^[a-z0-9]+(?:-+[a-z0-9]+)*$"]] ;; non-empty strings with only lowercase, numbers, or dashes
    [:content Hiccup]])
 
 (def Site
@@ -28,16 +30,27 @@
    [:pages
     [:vector Page]]])
 
-(def valid-page?
-  (m/validator Page))
+(defn- invalid-schema
+  "Explain why the value does not match the schema."
+  [schema value]
+  (-> schema
+      (m/explain value)
+      (me/humanize)))
+
+(def valid? ^:private m/validate)
+
+(defn valid-page?
+  [page]
+  (valid? Page page))
 
 (defn invalid-page
   [page]
-  (m/explain Page page))
+  (invalid-schema Page page))
 
-(def valid-site?
-  (m/validator Site))
+(defn valid-site?
+  [site]
+  (valid? Site site))
 
 (defn invalid-site
   [site]
-  (m/explain Site site))
+  (invalid-schema Site site))

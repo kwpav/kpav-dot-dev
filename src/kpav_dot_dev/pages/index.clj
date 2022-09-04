@@ -3,6 +3,9 @@
 (def head
   [:head
    [:meta {:charset "utf-8"}]
+   [:meta {:name "viewport"
+           :content "width=device-width, initial-scale=1.0"}]
+   [:script {:src "https://cdn.tailwindcss.com"}]
    [:title "kpav dot dev"]])
 
 (def header
@@ -17,10 +20,11 @@
   [:footer [:hr] "2022 © Kevin Pavao | Built with λ"])
 
 (def content
-  [:h1 "{:kpav/dev \"coming soon\"}"])
+  [:h1 {:class "text-3xl font-bold underline"} "{:kpav/dev \"coming soon\"}"])
 
 (def page
-  {:name "index"
+  {:location ""
+   :name "index"
    :content
    [:html
     head
