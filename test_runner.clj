@@ -5,12 +5,14 @@
 
 (cp/add-classpath "src:test")
 
-(require 'kpav-dot-net.schema-test
-         'kpav-dot-net.pages-test)
+(require 'kpav-dot-dev.schema-test
+         'kpav-dot-dev.pages-test
+         'kpav-dot-dev.components-test)
 
 (def test-results
-  (t/run-tests 'kpav-dot-net.schema-test
-               'kpav-dot-net.pages-test))
+  (t/run-tests 'kpav-dot-dev.schema-test
+               'kpav-dot-dev.pages-test
+               'kpav-dot-dev.components-test))
 
 (def failures-and-errors
   (let [{:keys [:fail :error]} test-results]

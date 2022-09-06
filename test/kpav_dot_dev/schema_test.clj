@@ -1,9 +1,9 @@
-(ns kpav-dot-net.schema-test
+(ns kpav-dot-dev.schema-test
   (:require
    [clojure.test :refer [deftest is testing]]
    [kpav-dot-dev.schema :as schema]))
 
-(deftest valid-site?
+#_(deftest valid-site?
   (testing "Valid site returns true"
     (let [example-page {:name "page-one"
                         :location "blog"
@@ -17,7 +17,7 @@
             example-site {:pages [example-page]}]
         (is (= false (schema/valid-site? example-site)))))))
 
-(deftest valid-page?
+#_(deftest valid-page?
   (testing "Page with invalid name - 'page-One' - returns false"
       (let [example-page {:name "page-One"
                           :location "folder-name"

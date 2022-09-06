@@ -1,0 +1,6 @@
+{:site-name   "(kpav-dot-dev)"
+ :content-dir "content"
+ :out-dir     "dist"
+ :blog        {:content-dir "blog"
+               :out-dir     "blog"}
+ :port        1337}
